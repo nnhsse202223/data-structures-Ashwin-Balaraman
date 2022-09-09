@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch ListDemo",
+            "request": "launch",
+            "mainClass": "ListDemo",
+            "projectName": "Chapter 15 Class Notes_c4946833"
+        },
+        {
+            "type": "java",
+            "name": "Launch MapDemo",
+            "request": "launch",
+            "mainClass": "MapDemo",
+            "projectName": "Chapter 15 Class Notes_c4946833"
+        },
+        {
+            "type": "java",
+            "name": "Launch PriorityQueueDemo",
+            "request": "launch",
+            "mainClass": "PriorityQueueDemo",
+            "projectName": "Chapter 15 Class Notes_c4946833"
+        },
+        {
+            "type": "java",
+            "name": "Launch QueueDemo",
+            "request": "launch",
+            "mainClass": "QueueDemo",
+            "projectName": "Chapter 15 Class Notes_c4946833"
+        },
+        {
+            "type": "java",
+            "name": "Launch StackDemo",
+            "request": "launch",
+            "mainClass": "StackDemo",
+            "projectName": "Chapter 15 Class Notes_c4946833"
+        },
+        {
+            "type": "java",
+            "name": "Launch WordAnalysis",
+            "request": "launch",
+            "mainClass": "WordAnalysis",
+            "projectName": "Chapter 15 Class Notes_c4946833"
+        }
+    ]
+}
