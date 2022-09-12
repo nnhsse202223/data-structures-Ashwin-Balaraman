@@ -1,18 +1,19 @@
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.awt.Point;
 /**
    A class to represent a polynomial.
 */
 public class Polynomial
 {
-   . . .
+   private LinkedList<Term> terms;
 
    /**
       Constructs an empty polynomial
    */
    public Polynomial()
    {
-      . . .
+      terms = new LinkedList<Term>();
    }
 
    /**
@@ -21,7 +22,8 @@ public class Polynomial
    */
    public Polynomial(Term t)
    {
-      . . .
+      terms = new LinkedList<Point>();
+      terms.add()
    }
 
    /**
