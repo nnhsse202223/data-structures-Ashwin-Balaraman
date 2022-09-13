@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -27,7 +28,7 @@ public class ListDemo
           that is positioned at the fron tof the list.
           The "|" in the comment represents the iterator position.
           */
-           <String> iterator = staff.listIterator();//|DRHT
+           Iterator<String> iterator = staff.listIterator();//|DRHT
           /*
            * The next methjod advances the iterator over the nest element 
            * in the list

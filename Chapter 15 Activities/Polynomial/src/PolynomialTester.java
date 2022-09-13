@@ -18,8 +18,8 @@ public class PolynomialTester
       p.print();
       System.out.println("\nExpected: 5.0x^10 + 9.0x^7 - 1.0x - 10.0");
 
-      Polynomial q = p.multiply(p);
-      q.print();
-      System.out.println("\nExpected: 25.0x^20 + 90.0x^17 + 81.0x^14 - 10.0x^11 - 100.0x^10 - 18.0x^8 - 180.0x^7 + 1.0x^2 + 20.0x + 100.0");
+      //Polynomial q = p.multiply(p);
+      //q.print();
+      //System.out.println("\nExpected: 25.0x^20 + 90.0x^17 + 81.0x^14 - 10.0x^11 - 100.0x^10 - 18.0x^8 - 180.0x^7 + 1.0x^2 + 20.0x + 100.0");
    }
 }
