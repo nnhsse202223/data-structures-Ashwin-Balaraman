@@ -74,7 +74,11 @@ public class SudokuSolver {
         {
             
            
+<<<<<<< HEAD
+            
+=======
             boolean tru = true;
+>>>>>>> 881cd895a3caa25dfd68c28a82bd12ac44ff8c7b
             for (j = 0; j < grid[i].length; j+= 3)
             {
                 HashSet<Integer> set = new HashSet<Integer>();
@@ -93,7 +97,11 @@ public class SudokuSolver {
         }
         // create a hash set for [1..9] (this.nums)
         // ...
-
+        this.nums = new HashSet<Integer>();
+        for (int i = 1; i < 10; i++)
+        {
+            this.nums.add(i);
+        }
         // visually inspect that all the sets are correct
         for (int row = 0; row < N; row++) {
             System.out.println("row " + row + ": " + this.rows.get(row));
@@ -136,8 +144,16 @@ public class SudokuSolver {
             Properly indexing the squares list of sets is tricky. Verify that your
             algorithm is correct.
          */
-        Set<Integer> possibleNums = new HashSet<Integer>(this.nums);
-        // ...
+        Set<Integer> possibleNums = new HashSet<Integer>();
+        for (Integer i : this.nums)
+        {
+            possibleNums.add(i);
+        }
+        possibleNums.removeAll(this.cols.get(nextCol));
+        possibleNums.removeAll(this.rows.get(nextRow));
+        int squareIndex = findSquareCol(nextCol, nextRow);
+        possibleNums.removeAll(this.squares.get(squareIndex));
+        
 
         // if there are no possible numbers, we cannot solve the board in its current state
         if (possibleNums.isEmpty()) {
@@ -147,7 +163,7 @@ public class SudokuSolver {
         // try each possible number
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
-            // ...
+            
 
             // recursively solve the board
             if (this.solve()) {
@@ -178,6 +194,12 @@ public class SudokuSolver {
         }
 
         return str;
+    }
+    public int findSquareCol(int col, int row)
+    {
+       row = row/3;
+       col = col/3;
+       return (col + (3* row));
     }
 
     public static void main(String[] args) {
