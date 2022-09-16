@@ -67,7 +67,30 @@ public class SudokuSolver {
             6 7 8
          */
         // ...
-
+        this.squares = new ArrayList<Set<Integer>>();
+        int o = 0;
+        int j = 0;
+        for (int i = 0; i < grid.length; i+=3)
+        {
+            
+           
+            boolean tru = true;
+            for (j = 0; j < grid[i].length; j+= 3)
+            {
+                HashSet<Integer> set = new HashSet<Integer>();
+                for (o=i; o < i +3; o++)
+                {
+                    for (int k = j; k < j + 3; k++)
+                    {
+                        set.add(this.grid[o][k]);
+                    }
+                }
+                this.squares.add(set);
+                
+            }
+            
+              
+        }
         // create a hash set for [1..9] (this.nums)
         // ...
 
