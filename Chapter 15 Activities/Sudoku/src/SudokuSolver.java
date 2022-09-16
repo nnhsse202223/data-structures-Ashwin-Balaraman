@@ -10,6 +10,7 @@ public class SudokuSolver {
     private ArrayList<Set<Integer>> cols;
     private ArrayList<Set<Integer>> squares;
     private Set<Integer> nums;
+    private boolean add;
 
     public SudokuSolver(String fileName) {
         // read the puzzle file
@@ -37,10 +38,28 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         // ...
-
+        this.rows = new ArrayList<Set<Integer>>();
+        for (int i = 0; i < this.grid.length; i++)
+        {
+           HashSet<Integer> set = new HashSet<Integer>();
+           for (int j = 0; j < grid[i].length; j++)
+           {
+            set.add(grid[i][j]);
+           }
+           this.rows.add(set);
+        }
         // create the list of sets for each col (this.cols)
         // ...
-
+        this.cols = new ArrayList<Set<Integer>>();
+        for (int i = 0; i < this.grid.length; i++)
+        {
+           HashSet<Integer> set = new HashSet<Integer>();
+           for (int j = 0; j < this.grid[i].length; j++)
+           {
+                set.add(grid[j][i]);
+           }
+           this.cols.add(set);
+        }
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
             0 1 2
