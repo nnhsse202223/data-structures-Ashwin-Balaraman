@@ -73,12 +73,6 @@ public class SudokuSolver {
         for (int i = 0; i < grid.length; i+=3)
         {
             
-           
-<<<<<<< HEAD
-            
-=======
-            boolean tru = true;
->>>>>>> 881cd895a3caa25dfd68c28a82bd12ac44ff8c7b
             for (j = 0; j < grid[i].length; j+= 3)
             {
                 HashSet<Integer> set = new HashSet<Integer>();
@@ -175,7 +169,10 @@ public class SudokuSolver {
                  element in the grid back to 0 and removing possibleNum from all three corresponding
                  sets.
                  */
-                // ...
+                this.grid[nextRow][nextCol] = 0;
+                this.cols.get(nextCol).remove(possibleNum);
+                this.rows.get(nextRow).remove(possibleNum);
+                this.squares.get(squareIndex).remove(possibleNum);
             }
         }
 
