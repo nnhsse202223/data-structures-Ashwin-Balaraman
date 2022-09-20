@@ -1,4 +1,7 @@
 import java.util.*;
+
+import javax.naming.InterruptedNamingException;
+
 import java.io.*;
 /**
  * Read all words from a file and add them to a
@@ -18,6 +21,7 @@ public class StringLengthMap
         {
 
             // Create your map here
+            Map<Integer, String> stringMap = new HashMap<>();
             
 
             while (in.hasNext())
@@ -27,13 +31,29 @@ public class StringLengthMap
 
                 // Update the map here
                 // Modify Worked Example 15.1
+                if (stringMap.containsKey(len))
+                {
+                    String modify = stringMap.get(len);
+                    stringMap.put(len, word + " ," + modify);
+                    
+                }
+                else 
+                {
+                    stringMap.put(len, word);
+                }
                 
+
 
 
             }
 
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i
+            Set<Integer> ints = stringMap.keySet();
+            for (Integer key : ints)
+            {
+                System.out.println(key + " : " + stringMap.get(key));
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);

@@ -18,7 +18,7 @@ public class StringLengthMap2
         {
 
             // Create your map here
-            
+            Map<Integer, String> stringMap = new HashMap<>();
 
             while (in.hasNext())
             {
@@ -27,7 +27,7 @@ public class StringLengthMap2
 
                 // Update the map here
                 // Use the Java 8 merge() method
-                
+                if (stringMap)
 
 
             }

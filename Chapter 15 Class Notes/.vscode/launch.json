@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MapDemo",
+            "request": "launch",
+            "mainClass": "MapDemo",
+            "projectName": "Chapter 15 Class Notes_3effd50f"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
