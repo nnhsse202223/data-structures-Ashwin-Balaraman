@@ -1,4 +1,7 @@
 import java.util.Stack;
+
+import javax.sound.sampled.LineEvent;
+
 import java.util.Scanner;
 
 /**
@@ -22,7 +25,8 @@ public class Driveway
     public Driveway()
     {
         // Complete the constructor
-        ...
+        driveway = new Stack<>();
+        street = new Stack<>();
 
 
     }
@@ -35,7 +39,7 @@ public class Driveway
     public void add(int licensePlate)
     {
         // Complete this method
-        ...
+        driveway.push(licensePlate);
 
 
     }
@@ -48,7 +52,18 @@ public class Driveway
     public void remove(int licensePlate)
     {
         // Complete this method
-        ...
+        int license = 0;
+        if (licensePlate != driveway.peek())
+        {
+          license = driveway.pop();
+          street.add(license);
+          remove(licensePlate);
+          
+        }
+        else 
+        {
+          driveway.pop();
+        }
 
 
     }
@@ -60,11 +75,17 @@ public class Driveway
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
         // Print the cars in the driveway here
-        ...
+        for (int plate : driveway)
+        {
+          System.out.println(plate);
+        }
 
         System.out.println("In Street, starting at first in (one license plate per line):");
         // Print the cars in the street here
-        ...
+        for (int plate : street)
+        {
+          System.out.println(plate);
+        }
 
     }
 }
