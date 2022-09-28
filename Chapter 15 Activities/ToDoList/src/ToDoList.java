@@ -86,7 +86,7 @@ public class ToDoList
         // Complete this method
         next = q.remove();
             
-        }
+        
         
         
         if (next == null)
