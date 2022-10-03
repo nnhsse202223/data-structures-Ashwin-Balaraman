@@ -62,8 +62,7 @@ public class LinkedList
     }
 
 
-
-
+    
     /**
         Returns an iterator for iterating through this list.
         @return an iterator for iterating through this list
