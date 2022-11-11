@@ -74,6 +74,8 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+        codeMap.put(letter, code);
+        treeInsert(letter, code);
     }
 
     /**
@@ -88,6 +90,29 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+        String temp = code;
+        TreeNode tempNode = decodeTree;
+        int length = temp.length();
+        int i = 0;
+        if (temp.substring(0, 1).equals("."))
+        {
+            tempNode = decodeTree.getLeft();
+            while (i != length)
+            {
+                if (temp.substring(i, i+1).equals("."))
+                {
+                    tempNode = tempNode.getLeft();
+                }
+                else{
+                    tempNode = tempNode.getRight();
+                }
+                i++;
+            }
+            
+        }
+        
+        tempNode.setValue(code);
+
     }
 
     /**
