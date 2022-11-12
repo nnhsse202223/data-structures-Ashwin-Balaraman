@@ -1,6 +1,7 @@
 import java.util.TreeMap;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class MorseCode
@@ -94,24 +95,21 @@ public class MorseCode
         TreeNode tempNode = decodeTree;
         int length = temp.length();
         int i = 0;
-        if (temp.substring(0, 1).equals("."))
-        {
-            tempNode = decodeTree.getLeft();
-            while (i != length)
-            {
-                if (temp.substring(i, i+1).equals("."))
-                {
-                    tempNode = tempNode.getLeft();
-                }
-                else{
-                    tempNode = tempNode.getRight();
-                }
-                i++;
-            }
-            
-        }
         
-        tempNode.setValue(code);
+        while (i != length && tempNode != null)
+        {
+            if (temp.substring(i, i+1).equals("."))
+            {
+                    tempNode = tempNode.getLeft();
+            }
+            else{
+                tempNode = tempNode.getRight();
+            }
+            i++;
+        }
+            
+        tempNode = new TreeNode(code, null, null);
+        
 
     }
 
@@ -128,7 +126,23 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
-
+        int length;
+        String temp2 = text.toUpperCase();
+        try (Scanner in = new Scanner(temp2)) {
+            char temp;
+            while (in.hasNext())
+            {
+                temp2 = in.next();
+                length = temp2.length();
+                for (int i = 0; i < length; i++)
+                {   
+                    temp = temp2.charAt(i);
+                    morse.append(codeMap.get(temp));
+                }
+                morse.append(" ");
+                
+            }
+        }
         return morse.toString();
     }
 
@@ -145,7 +159,7 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
-
+        
         return text.toString();
     }
 }
