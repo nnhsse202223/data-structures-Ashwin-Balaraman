@@ -22,7 +22,7 @@ public class MorseCode
     public static void start()
     {
         codeMap = new TreeMap<Character, String>();
-        decodeTree = new TreeNode(' ', null, null);  // autoboxing
+        decodeTree = new TreeNode(" ", null, null);  // autoboxing
         // put a space in the root of the decoding tree
 
         addSymbol('A', ".-");
@@ -95,22 +95,34 @@ public class MorseCode
         TreeNode tempNode = decodeTree;
         int length = temp.length();
         int i = 0;
+        boolean isAdded = false;
         
-        while (i != length && tempNode != null)
+        while (i < length && tempNode != null)
         {
             if (temp.substring(i, i+1).equals("."))
             {
-                    tempNode = tempNode.getLeft();
+                if (tempNode.getLeft() == null)
+                {
+                    TreeNode add = new TreeNode(letter, null, null);
+                    tempNode.setLeft(add);
+                    isAdded = true;
+                }
+                tempNode = tempNode.getLeft();
             }
             else{
+                if (tempNode.getRight() == null)
+                {
+                    TreeNode add = new TreeNode(letter, null, null);
+                    tempNode.setRight(add);
+                    isAdded = true;
+                }
                 tempNode = tempNode.getRight();
             }
+            temp = code;
             i++;
-        }
             
-        tempNode = new TreeNode(code, null, null);
-        
-
+        }
+        tempNode.setValue(letter);
     }
 
     /**
@@ -138,8 +150,9 @@ public class MorseCode
                 {   
                     temp = temp2.charAt(i);
                     morse.append(codeMap.get(temp));
+                    morse.append(" ");
                 }
-                morse.append(" ");
+                
                 
             }
         }
@@ -159,7 +172,9 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
-        
+        String morseC = morse;
+        Scanner in = new Scanner(morseC);
+
         return text.toString();
     }
 }
