@@ -95,7 +95,6 @@ public class MorseCode
         TreeNode tempNode = decodeTree;
         int length = temp.length();
         int i = 0;
-        boolean isAdded = false;
         
         while (i < length && tempNode != null)
         {
@@ -105,7 +104,6 @@ public class MorseCode
                 {
                     TreeNode add = new TreeNode(letter, null, null);
                     tempNode.setLeft(add);
-                    isAdded = true;
                 }
                 tempNode = tempNode.getLeft();
             }
@@ -114,7 +112,6 @@ public class MorseCode
                 {
                     TreeNode add = new TreeNode(letter, null, null);
                     tempNode.setRight(add);
-                    isAdded = true;
                 }
                 tempNode = tempNode.getRight();
             }
@@ -173,8 +170,28 @@ public class MorseCode
             !!! INSERT CODE HERE
         */
         String morseC = morse;
-        Scanner in = new Scanner(morseC);
-
+        int length = 0;
+        try (Scanner in = new Scanner(morseC)) {
+            while (in.hasNext())
+            {
+                String temp = " ";
+                TreeNode tempNode = decodeTree;
+                temp = in.next();
+                length = temp.length();
+                for (int i = 0; i < length; i++)
+                {
+                    if (temp.substring(i, i+1).equals("."))
+                    {
+                        tempNode = tempNode.getLeft();
+                    }
+                    else
+                    {
+                        tempNode = tempNode.getRight();
+                    }
+                }
+                text.append(tempNode.getValue());
+            }
+        }
         return text.toString();
     }
 }
