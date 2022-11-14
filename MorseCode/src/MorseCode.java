@@ -136,23 +136,20 @@ public class MorseCode
             !!! INSERT CODE HERE
         */
         int length;
+        int i = 0;
+        String temp;
         String temp2 = text.toUpperCase();
-        try (Scanner in = new Scanner(temp2)) {
-            char temp;
-            while (in.hasNext())
-            {
-                temp2 = in.next();
-                length = temp2.length();
-                for (int i = 0; i < length; i++)
-                {   
-                    temp = temp2.charAt(i);
-                    morse.append(codeMap.get(temp));
-                    morse.append(" ");
+        length = temp2.length();
+            for (int i = 0; i < length; i++)
+            {   
+                temp = temp2.substring(i, i+1);
+                if (temp.equals(" "))
+                {
+                    morse.append("  ");
                 }
-                
-                
-            }
-        }
+                morse.append(codeMap.get(temp));
+                morse.append(" ");
+            }     
         return morse.toString();
     }
 
@@ -171,26 +168,25 @@ public class MorseCode
         */
         String morseC = morse;
         int length = 0;
-        try (Scanner in = new Scanner(morseC)) {
-            while (in.hasNext())
+        
+        while (in.hasNext())
+        {
+            String temp = " ";
+            TreeNode tempNode = decodeTree;
+            
+            length = temp.length();
+            for (int i = 0; i < length; i++)
             {
-                String temp = " ";
-                TreeNode tempNode = decodeTree;
-                temp = in.next();
-                length = temp.length();
-                for (int i = 0; i < length; i++)
+                if (temp.substring(i, i+1).equals("."))
                 {
-                    if (temp.substring(i, i+1).equals("."))
-                    {
-                        tempNode = tempNode.getLeft();
-                    }
-                    else
-                    {
-                        tempNode = tempNode.getRight();
-                    }
+                    tempNode = tempNode.getLeft();
                 }
-                text.append(tempNode.getValue());
+                else
+                {
+                    tempNode = tempNode.getRight();
+                }
             }
+            text.append(tempNode.getValue());
         }
         return text.toString();
     }
