@@ -136,19 +136,23 @@ public class MorseCode
             !!! INSERT CODE HERE
         */
         int length;
-        int i = 0;
-        String temp;
+        String temp = " ";
         String temp2 = text.toUpperCase();
         length = temp2.length();
             for (int i = 0; i < length; i++)
             {   
                 temp = temp2.substring(i, i+1);
+                char a = temp2.charAt(i);
                 if (temp.equals(" "))
                 {
                     morse.append("  ");
                 }
-                morse.append(codeMap.get(temp));
-                morse.append(" ");
+                else 
+                {
+                    morse.append(codeMap.get(a));
+                    morse.append(" ");
+                } 
+                temp2 = text.toUpperCase();
             }     
         return morse.toString();
     }
@@ -168,26 +172,36 @@ public class MorseCode
         */
         String morseC = morse;
         int length = 0;
-        
-        while (in.hasNext())
+        length = morseC.length();
+        TreeNode temp = decodeTree;
+        String k = " ";
+        char a;
+        for (int i = 0; i < length; i++)
         {
-            String temp = " ";
-            TreeNode tempNode = decodeTree;
-            
-            length = temp.length();
-            for (int i = 0; i < length; i++)
+            String j = morseC.substring(i, i+1);
+            if (i + 1 != length){k = morseC.substring(i, i+2);}
+            if (j.equals(" "))
             {
-                if (temp.substring(i, i+1).equals("."))
+                if (k.equals("  "))
                 {
-                    tempNode = tempNode.getLeft();
+                    text.append(temp.getValue());
                 }
-                else
+                else 
                 {
-                    tempNode = tempNode.getRight();
+                    text.append(temp.getValue());
                 }
+                temp = decodeTree;
             }
-            text.append(tempNode.getValue());
+            else if (j.equals("."))
+            {
+                temp = temp.getLeft();
+            }
+            else if (j.equals("-"))
+            {
+                temp = temp.getRight();
+            }
         }
+       
         return text.toString();
     }
 }
