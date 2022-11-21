@@ -185,6 +185,7 @@ public class MorseCode
                 if (k.equals("  "))
                 {
                     text.append(temp.getValue());
+                    i++;
                 }
                 else 
                 {
