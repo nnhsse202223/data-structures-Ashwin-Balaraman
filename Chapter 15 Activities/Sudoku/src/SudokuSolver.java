@@ -10,6 +10,7 @@ public class SudokuSolver {
     private ArrayList<Set<Integer>> cols;
     private ArrayList<Set<Integer>> squares;
     private Set<Integer> nums;
+    private boolean add;
 
     public SudokuSolver(String fileName) {
         // read the puzzle file
@@ -37,10 +38,28 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         // ...
-
+        this.rows = new ArrayList<Set<Integer>>();
+        for (int i = 0; i < this.grid.length; i++)
+        {
+           HashSet<Integer> set = new HashSet<Integer>();
+           for (int j = 0; j < grid[i].length; j++)
+           {
+            set.add(grid[i][j]);
+           }
+           this.rows.add(set);
+        }
         // create the list of sets for each col (this.cols)
         // ...
-
+        this.cols = new ArrayList<Set<Integer>>();
+        for (int i = 0; i < this.grid.length; i++)
+        {
+           HashSet<Integer> set = new HashSet<Integer>();
+           for (int j = 0; j < this.grid[i].length; j++)
+           {
+                set.add(grid[j][i]);
+           }
+           this.cols.add(set);
+        }
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
             0 1 2
@@ -48,10 +67,35 @@ public class SudokuSolver {
             6 7 8
          */
         // ...
-
+        this.squares = new ArrayList<Set<Integer>>();
+        int o = 0;
+        int j = 0;
+        for (int i = 0; i < grid.length; i+=3)
+        {
+            
+            for (j = 0; j < grid[i].length; j+= 3)
+            {
+                HashSet<Integer> set = new HashSet<Integer>();
+                for (o=i; o < i +3; o++)
+                {
+                    for (int k = j; k < j + 3; k++)
+                    {
+                        set.add(this.grid[o][k]);
+                    }
+                }
+                this.squares.add(set);
+                
+            }
+            
+              
+        }
         // create a hash set for [1..9] (this.nums)
         // ...
-
+        this.nums = new HashSet<Integer>();
+        for (int i = 1; i < 10; i++)
+        {
+            this.nums.add(i);
+        }
         // visually inspect that all the sets are correct
         for (int row = 0; row < N; row++) {
             System.out.println("row " + row + ": " + this.rows.get(row));
@@ -94,8 +138,16 @@ public class SudokuSolver {
             Properly indexing the squares list of sets is tricky. Verify that your
             algorithm is correct.
          */
-        Set<Integer> possibleNums = new HashSet<Integer>(this.nums);
-        // ...
+        Set<Integer> possibleNums = new HashSet<Integer>();
+        for (Integer i : this.nums)
+        {
+            possibleNums.add(i);
+        }
+        possibleNums.removeAll(this.cols.get(nextCol));
+        possibleNums.removeAll(this.rows.get(nextRow));
+        int squareIndex = findSquareCol(nextCol, nextRow);
+        possibleNums.removeAll(this.squares.get(squareIndex));
+        
 
         // if there are no possible numbers, we cannot solve the board in its current state
         if (possibleNums.isEmpty()) {
@@ -105,7 +157,7 @@ public class SudokuSolver {
         // try each possible number
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
-            // ...
+            
 
             // recursively solve the board
             if (this.solve()) {
@@ -117,7 +169,10 @@ public class SudokuSolver {
                  element in the grid back to 0 and removing possibleNum from all three corresponding
                  sets.
                  */
-                // ...
+                this.grid[nextRow][nextCol] = 0;
+                this.cols.get(nextCol).remove(possibleNum);
+                this.rows.get(nextRow).remove(possibleNum);
+                this.squares.get(squareIndex).remove(possibleNum);
             }
         }
 
@@ -136,6 +191,12 @@ public class SudokuSolver {
         }
 
         return str;
+    }
+    public int findSquareCol(int col, int row)
+    {
+       row = row/3;
+       col = col/3;
+       return (col + (3* row));
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 import java.util.TreeMap;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class MorseCode
@@ -21,7 +22,7 @@ public class MorseCode
     public static void start()
     {
         codeMap = new TreeMap<Character, String>();
-        decodeTree = new TreeNode(' ', null, null);  // autoboxing
+        decodeTree = new TreeNode(" ", null, null);  // autoboxing
         // put a space in the root of the decoding tree
 
         addSymbol('A', ".-");
@@ -74,6 +75,8 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+        codeMap.put(letter, code);
+        treeInsert(letter, code);
     }
 
     /**
@@ -88,6 +91,35 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
+        String temp = code;
+        TreeNode tempNode = decodeTree;
+        int length = temp.length();
+        int i = 0;
+        
+        while (i < length && tempNode != null)
+        {
+            if (temp.substring(i, i+1).equals("."))
+            {
+                if (tempNode.getLeft() == null)
+                {
+                    TreeNode add = new TreeNode(letter, null, null);
+                    tempNode.setLeft(add);
+                }
+                tempNode = tempNode.getLeft();
+            }
+            else{
+                if (tempNode.getRight() == null)
+                {
+                    TreeNode add = new TreeNode(letter, null, null);
+                    tempNode.setRight(add);
+                }
+                tempNode = tempNode.getRight();
+            }
+            temp = code;
+            i++;
+            
+        }
+        tempNode.setValue(letter);
     }
 
     /**
@@ -103,7 +135,25 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
-
+        int length;
+        String temp = " ";
+        String temp2 = text.toUpperCase();
+        length = temp2.length();
+            for (int i = 0; i < length; i++)
+            {   
+                temp = temp2.substring(i, i+1);
+                char a = temp2.charAt(i);
+                if (temp.equals(" "))
+                {
+                    morse.append("  ");
+                }
+                else 
+                {
+                    morse.append(codeMap.get(a));
+                    morse.append(" ");
+                } 
+                temp2 = text.toUpperCase();
+            }     
         return morse.toString();
     }
 
@@ -120,7 +170,39 @@ public class MorseCode
         /*
             !!! INSERT CODE HERE
         */
-
+        String morseC = morse;
+        int length = 0;
+        length = morseC.length();
+        TreeNode temp = decodeTree;
+        String k = " ";
+        char a;
+        for (int i = 0; i < length; i++)
+        {
+            String j = morseC.substring(i, i+1);
+            if (i + 1 != length){k = morseC.substring(i, i+2);}
+            if (j.equals(" "))
+            {
+                if (k.equals("  "))
+                {
+                    text.append(temp.getValue());
+                    i++;
+                }
+                else 
+                {
+                    text.append(temp.getValue());
+                }
+                temp = decodeTree;
+            }
+            else if (j.equals("."))
+            {
+                temp = temp.getLeft();
+            }
+            else if (j.equals("-"))
+            {
+                temp = temp.getRight();
+            }
+        }
+       
         return text.toString();
     }
 }

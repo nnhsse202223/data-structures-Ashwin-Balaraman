@@ -1,16 +1,21 @@
-. . .
+import java.util.Scanner;
 public class Grid
 {
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
-    . . .
+    
 
     /**
      * Flood fill, starting with the given row and column.
     */
     public void floodfill(int row, int column)
     {
-        . . .
+        Scanner in = new Scanner(System.in);
+        System.out.println("Give Row: ");
+        row = in.nextInt();
+        System.out.println("Give Col: ");
+        column = in.nextInt();
+        
     }
 
     public String toString()

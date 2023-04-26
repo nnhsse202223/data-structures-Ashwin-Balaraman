@@ -1,18 +1,19 @@
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.awt.Point;
 /**
    A class to represent a polynomial.
 */
 public class Polynomial
 {
-   . . .
+   private LinkedList<Term> terms;
 
    /**
       Constructs an empty polynomial
    */
    public Polynomial()
    {
-      . . .
+      terms = new LinkedList<Term>();
    }
 
    /**
@@ -21,7 +22,8 @@ public class Polynomial
    */
    public Polynomial(Term t)
    {
-      . . .
+      terms = new LinkedList<Term>();
+      terms.add(t);
    }
 
    /**
@@ -31,8 +33,21 @@ public class Polynomial
    */
    public void add(Polynomial p)
    {
-      . . .
+      ListIterator<Term> terms1 = terms.listIterator();
+      ListIterator<Term> terms2 = p.terms.listIterator();
+      while (terms1.hasNext())
+      {
+         for (int i = 0; i < p.terms.size(); i++)
+         {
+            while (terms2.hasNext())
+            {
+               terms1.next().addIfSamePower(terms2.next());
+               terms1.previous();
+            }
+         }
 
+      }
+      
 
    }
 
@@ -55,7 +70,13 @@ public class Polynomial
    */
    public void print()
    {
-      . . .
+      int index;
+      int highPower;
+      for (int i = 0; i < terms.size(); i++)
+      {
+         highPower = terms.get(i).getPower();
+         for (int o = i; )
+      }
 
 
 

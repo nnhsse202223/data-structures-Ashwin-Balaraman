@@ -22,8 +22,61 @@ public class HTMLChecker
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
-            . . .
-
+            String HTLM = in.nextLine();
+            
+            String delimiString = "[>]";
+            
+            
+            String temp2;
+            String temp;
+            int i = 0;
+            while (i != 4)
+            {
+                
+                Scanner ins = new Scanner(HTLM);
+                temp = ins.next();
+                ins.useDelimiter(delimiString);
+                if (temp.equals("<p>"))
+                {
+                    while (ins.hasNext())
+                    {
+                        if (ins.next().equals("</p>"))
+                        {
+                            i++;
+                        }
+                    }
+                }
+                else if (temp.equals("<ul>"))
+                {
+                    while (ins.hasNext())
+                    {
+                        if (ins.next().equals("</ul>"))
+                        {
+                            i++;
+                        }
+                    }
+                }
+                else if (temp.equals("<li>"))
+                {
+                    while (ins.hasNext())
+                    {
+                        if (ins.next().equals("</li>"))
+                        {
+                            i++;
+                        }
+                    }
+                }
+                else if (temp.equals("<a>"))
+                {
+                    while (ins.hasNext())
+                    {
+                        if (ins.next().equals("</a>"))
+                        {
+                            i++;
+                        }
+                    }
+                }
+            }
 
         } catch (FileNotFoundException e)
         {
